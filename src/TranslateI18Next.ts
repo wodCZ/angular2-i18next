@@ -15,26 +15,29 @@ export class TranslateI18Next {
     private ready:boolean = false;
     private i18nextPromise:Promise.Thenable<void>;
 
-    public init():Promise.Thenable<void> {
-        if (this.i18nextPromise) {
-            return this.i18nextPromise;
-        }
-        return this.i18nextPromise = new Promise<any>((resolve) => {
-            i18next
-                .use(i18nextXHRBackend)
-                .use(i18nextBrowserLanguageDetector)
-                .init(
-                    {
-                        detection: {
-                            order: ['navigator']
-                        },
-                        fallbackLng: 'en'
-                    },
-                    (err:any) => {
-                        this.ready = true;
-                        resolve(err);
-                    });
-        });
+    public init(options?:any):Promise.Thenable<void> {
+        return this.i18nextPromise =
+            new Promise<void>((resolve:(thenableOrResult?:void | Promise.Thenable<void>) => void, reject:(error:any) => void) => {
+                i18next
+                    .use(i18nextXHRBackend)
+                    .use(i18nextBrowserLanguageDetector)
+                    .init(
+                        Object.assign({
+                            detection: {
+                                order: ['navigator']
+                            },
+                            fallbackLng: 'en'
+                        }, options),
+                        (err:any) => {
+                            if (err) {
+                                console.error(err);
+                                reject(err);
+                            } else {
+                                this.ready = true;
+                                resolve(null);
+                            }
+                        });
+            });
     }
 
     public translate(key:string, options?:any):string {
