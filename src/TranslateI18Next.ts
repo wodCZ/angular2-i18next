@@ -38,6 +38,6 @@ export class TranslateI18Next {
     }
 
     public translate(key:string, options?:any):string {
-        return i18next.t(key, options);
+        return i18next.t(key, options || {});
     }
 }
