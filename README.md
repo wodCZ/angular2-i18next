@@ -11,7 +11,7 @@ npm install angular2-i18next --save
 
 ## Use
 
-main.ts
+**main.ts**
 ```typescript
 import {TranslateI18Next} from 'angular2-i18next/angular2-i18next';
 
@@ -21,7 +21,7 @@ browser.bootstrap(App, [
         ]);
 ```
 
-App.ts
+**app.ts**
 ```typescript
 import {TranslatePipe} from 'angular2-i18next/angular2-i18next';
 
@@ -32,16 +32,25 @@ import {TranslatePipe} from 'angular2-i18next/angular2-i18next';
   });
 ```
 
-App.html
+**app.html**
 ```html
 <div [innerHTML]='"<span style=\"color:red;\">You have {count} apple</span>" | translate:{count: appleCount}'></div>
 ```
 
-en/translation.json
+**en/translation.json**
 ```json
 {
   "<span style=\"color:red;\">You have {count} apple</span>": "<span style=\"color:red;\">You have {count} apple</span>",
   "<span style=\"color:red;\">You have {count} apple</span>_plural": "<span style=\"color:red;\">You have {count} apples</span>"
+}
+```
+
+**ru/translation.json**
+```json
+{
+  "<span style=\"color:red;\">You have {count} apple</span>": "<span style=\"color:green;\">У вас есть одно яблоко</span>",
+  "<span style=\"color:red;\">You have {count} apple</span>_2": "<span style=\"color:blue;\">У вас есть {count} яблока</span>",
+  "<span style=\"color:red;\">You have {count} apple</span>_5": "<span style=\"color:yellow;\">У вас есть {count} яблок</span>"
 }
 ```
 
