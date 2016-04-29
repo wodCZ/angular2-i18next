@@ -30,6 +30,11 @@ import {TranslatePipe} from 'angular2-i18next/angular2-i18next';
   pipes: [TranslatePipe],
   ...
   });
+export class App {
+
+    private appleCount: number;
+    ...
+}
 ```
 
 **app.html**
@@ -51,6 +56,19 @@ import {TranslatePipe} from 'angular2-i18next/angular2-i18next';
   "<span style=\"color:red;\">You have {count} apple</span>": "<span style=\"color:green;\">У вас есть одно яблоко</span>",
   "<span style=\"color:red;\">You have {count} apple</span>_2": "<span style=\"color:blue;\">У вас есть {count} яблока</span>",
   "<span style=\"color:red;\">You have {count} apple</span>_5": "<span style=\"color:yellow;\">У вас есть {count} яблок</span>"
+}
+```
+
+**I18nModule.ts** (the localized constants at typescript files)
+```typescript
+class Products {
+
+    static NAME:string = "Name";
+    ...
+}
+
+export class I18nModule {
+    static PRODUCTS = Products;
 }
 ```
 
