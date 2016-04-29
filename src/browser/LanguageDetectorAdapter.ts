@@ -5,8 +5,14 @@ export class LanguageDetectorAdapter {
     static toBrowserLanguageDetector(browserLanguageDetector:ILanguageDetector):{new():ILanguageDetector} {
         class LanguageDetector implements ILanguageDetector {
 
+            private currentLanguage:string;
+
+            public init() {
+                this.currentLanguage = browserLanguageDetector.detect();
+            }
+
             public detect():string {
-                return browserLanguageDetector.detect();
+                return this.currentLanguage;
             }
 
             public cacheUserLanguage() {
