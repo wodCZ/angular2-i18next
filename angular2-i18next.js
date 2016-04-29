@@ -1,7 +1,6 @@
 "use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-__export(require('./src/TranslateI18Next'));
-__export(require('./src/TranslatePipe'));
+var TranslateI18Next_1 = require('./src/TranslateI18Next');
+exports.TranslateI18Next = TranslateI18Next_1.TranslateI18Next;
+var TranslatePipe_1 = require('./src/TranslatePipe');
+exports.TranslatePipe = TranslatePipe_1.TranslatePipe;
 //# sourceMappingURL=angular2-i18next.js.map

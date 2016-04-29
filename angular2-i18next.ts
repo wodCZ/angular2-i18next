@@ -1,2 +1,3 @@
-export * from './src/TranslateI18Next';
-export * from './src/TranslatePipe';
+export {ILanguageDetector} from './src/browser/ILanguageDetector';
+export {TranslateI18Next} from './src/TranslateI18Next';
+export {TranslatePipe} from './src/TranslatePipe';
