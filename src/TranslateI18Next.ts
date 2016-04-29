@@ -75,6 +75,11 @@ export class TranslateI18Next {
 
     public translate(key:string, options?:any):string {
         options = options || {};
+
+        // Angular2 interpolation template should not interfere with i18next interpolation template
+        options.interpolation.prefix = "{";
+        options.interpolation.suffix = "}";
+
         const translatedValue = i18next.t(key, options);
 
         if (translatedValue) {
