@@ -39,7 +39,12 @@ export class TranslateI18Next {
                         Object.assign({
                             detection: {
                                 order: ['navigator']
-                            }
+                            },
+
+                            /**
+                             * Our keys may contains normal human phrases, ala gettext format => we must disable i18next format
+                             */
+                            nsSeparator: false
                         }, options),
                         (err:any) => {
                             if (err) {
