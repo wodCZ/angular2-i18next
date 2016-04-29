@@ -26,29 +26,25 @@ export class TranslateI18Next {
     public init(options?:any):Promise.Thenable<void> {
         options = options || {};
 
-        const browserLanguageDetector:ILanguageDetector = options.browserLanguageDetector;
-        delete options.browserLanguageDetector;
-
         this.fallbackLng = options.fallbackLng = options.fallbackLng || this.fallbackLng;
         this.debug = options.debug = options.debug || this.debug;
 
+        const browserLanguageDetector:ILanguageDetector = options.browserLanguageDetector
+            ? LanguageDetectorAdapter.toBrowserLanguageDetector(options.browserLanguageDetector)
+            : i18nextBrowserLanguageDetector;
+
+        delete options.browserLanguageDetector;
+
         if (this.debug) {
             console.debug('[$TranslateI18Next] Fallback language is', this.fallbackLng);
-
-            if (browserLanguageDetector) {
-                console.debug('[$TranslateI18Next] Used custom browser language detector');
-            }
+            console.debug('[$TranslateI18Next] The browser language detector is', browserLanguageDetector);
         }
 
         return this.i18nextPromise =
             new Promise<void>((resolve:(thenableOrResult?:void | Promise.Thenable<void>) => void, reject:(error:any) => void) => {
                 i18next
                     .use(i18nextXHRBackend)
-                    .use(
-                        browserLanguageDetector
-                            ? LanguageDetectorAdapter.toBrowserLanguageDetector(browserLanguageDetector)
-                            : i18nextBrowserLanguageDetector
-                    )
+                    .use(browserLanguageDetector)
                     .init(
                         Object.assign({
                             detection: {
