@@ -55,7 +55,7 @@ export class App {
 
 **app.html**
 ```html
-<div [innerHTML]='"<span style=\"color:red;\">You have {count} apple</span>" | translate:{count: appleCount}'></div>
+<div *ngIf="viewReady" [innerHTML]='"<span style=\"color:red;\">You have {count} apple</span>" | translate:{count: appleCount}'></div>
 ```
 
 **src/locales/en/translation.json**
