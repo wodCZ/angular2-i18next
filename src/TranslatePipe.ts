@@ -15,6 +15,6 @@ export class TranslatePipe implements PipeTransform {
     }
 
     public transform(value:string, args:any[]):string {
-        return this.translateI18Next.translate(value, args && args.length ? args[0] : null);
+        return this.translateI18Next.translate(value, Array.isArray(args) && args.length ? args[0] : args);
     }
 }
