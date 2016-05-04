@@ -1,4 +1,3 @@
-"use strict";
 var TranslateI18Next_1 = require('./src/TranslateI18Next');
 exports.TranslateI18Next = TranslateI18Next_1.TranslateI18Next;
 var TranslatePipe_1 = require('./src/TranslatePipe');
