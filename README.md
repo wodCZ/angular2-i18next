@@ -31,17 +31,25 @@ browser.bootstrap(App, [
 
 **app.ts**
 ```typescript
-import {TranslatePipe} from 'angular2-i18next';
+import {TranslatePipe, TranslateI18Next} from 'angular2-i18next';
 
 @Component({
   selector: 'app',
   pipes: [TranslatePipe],
   ...
-  });
+});
 export class App {
 
     private appleCount: number;
     ...
+    
+    viewReady:boolean = false;
+    
+    constructor(private translateI18Next:TranslateI18Next) {
+        translateI18Next.init({debug: true}).then(() => {
+            this.viewReady = true;
+        });
+    }
 }
 ```
 
@@ -50,7 +58,7 @@ export class App {
 <div [innerHTML]='"<span style=\"color:red;\">You have {count} apple</span>" | translate:{count: appleCount}'></div>
 ```
 
-**en/translation.json**
+**src/locales/en/translation.json**
 ```json
 {
   "<span style=\"color:red;\">You have {count} apple</span>": "<span style=\"color:red;\">You have {count} apple</span>",
@@ -58,7 +66,7 @@ export class App {
 }
 ```
 
-**ru/translation.json**
+**src/locales/ru/translation.json**
 ```json
 {
   "<span style=\"color:red;\">You have {count} apple</span>": "<span style=\"color:green;\">У вас есть одно яблоко</span>",
