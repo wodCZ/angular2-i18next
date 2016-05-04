@@ -7,7 +7,6 @@
     "typings-install": "typings install",
     "postinstall": "npm run typings-install"
   },
-  "main": "dist/angular2-i18next.js",
   "dependencies": {
     "bluebird": "3.3.4",
     "i18next": "2.5.1",
