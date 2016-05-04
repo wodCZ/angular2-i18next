@@ -9,11 +9,19 @@ First you need to install the npm module:
 npm install angular2-i18next --save
 ```
 
+After that, you need to configure the typings.json:
+```json
+"dependencies": {
+   "bluebird": "registry:npm/bluebird#3.2.1+20160211005852",
+   ...
+}
+```
+
 ## Use
 
 **main.ts**
 ```typescript
-import {TranslateI18Next} from 'angular2-i18next/angular2-i18next';
+import {TranslateI18Next} from 'angular2-i18next';
 
 browser.bootstrap(App, [
         TranslateI18Next,
@@ -23,7 +31,7 @@ browser.bootstrap(App, [
 
 **app.ts**
 ```typescript
-import {TranslatePipe} from 'angular2-i18next/angular2-i18next';
+import {TranslatePipe} from 'angular2-i18next';
 
 @Component({
   selector: 'app',
