@@ -52,9 +52,10 @@ export class TranslateI18Next {
                             },
 
                             /**
-                             * Our keys may contains normal human phrases, ala gettext format => we must disable i18next format
+                             * The keys may contain normal human phrases, i.e. the "gettext format" therefore we should disable "i18next format"
                              */
-                            nsSeparator: false
+                            nsSeparator: false,
+                            keySeparator: false
                         }, options),
                         (err:any) => {
                             if (err) {
