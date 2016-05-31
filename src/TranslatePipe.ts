@@ -7,7 +7,8 @@ import {
 import {TranslateI18Next} from './TranslateI18Next';
 
 @Pipe({
-    name: 'translate'
+    name: 'translate',
+    pure: false        // Force refresh after changing the language
 })
 export class TranslatePipe implements PipeTransform {
 
