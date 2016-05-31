@@ -95,4 +95,8 @@ export class TranslateI18Next {
         return i18next.t(key, Object.assign(options, {lng: this.fallbackLng}))
             || key;
     }
+
+    public changeLanguage(lng:string, callback?:Function) {
+        i18next.changeLanguage(lng, callback);
+    }
 }
