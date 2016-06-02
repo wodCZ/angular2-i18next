@@ -96,7 +96,7 @@ export class TranslateI18Next {
             || key;
     }
 
-    public changeLanguage(lng:string, callback?:Function) {
+    public changeLanguage(lng?:string, callback?:Function) {
         i18next.changeLanguage(lng, callback);
     }
 }
