@@ -23,6 +23,8 @@ export class TranslateI18Next {
     private fallbackLng:string = DEFAULT_FALLBACK_LNG;
     private debug:boolean = false;
 
+    private mapping:Object = {};
+
     public init(options?:any):Promise.Thenable<void> {
         options = options || {};
 
@@ -39,6 +41,8 @@ export class TranslateI18Next {
             console.debug('[$TranslateI18Next] Fallback language is', this.fallbackLng);
             console.debug('[$TranslateI18Next] The browser language detector is', browserLanguageDetector);
         }
+
+        this.mapping = options.mapping || this.mapping;
 
         return this.i18nextPromise =
             new Promise<void>((resolve:(thenableOrResult?:void | Promise.Thenable<void>) => void, reject:(error:any) => void) => {
@@ -75,6 +79,8 @@ export class TranslateI18Next {
     }
 
     public translate(key:string, options?:any):string {
+        key = this.mapping[key] || key;
+
         options = options || {};
         options.interpolation = options.interpolation || {};
 
