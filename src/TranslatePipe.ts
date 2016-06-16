@@ -2,7 +2,7 @@ import {
     Inject,
     Pipe,
     PipeTransform
-} from 'angular2/core';
+} from '@angular/core';
 
 import {TranslateI18Next} from './TranslateI18Next';
 

@@ -1,7 +1,7 @@
 import {
     Injectable,
     Inject
-} from 'angular2/core'
+} from '@angular/core'
 
 import * as Promise from 'bluebird';
 
