@@ -46,7 +46,12 @@ export class App {
     viewReady:boolean = false;
     
     constructor(private translateI18Next:TranslateI18Next) {
-        translateI18Next.init({debug: true}).then(() => {
+        translateI18Next.init({
+            debug: true,                                                        // optional
+            mapping: {"specific_backend_message": "message_for_translate"},     // optional
+            browserLanguageDetector: injectableCustomLanguageDetectorService,   // optional - the specific application language detector (allows you to return the language of the user) 
+            backend: injectableBackendConfigFactory                             // optional - allows to change "loadPath" i18next parameter
+        }).then(() => {
             this.viewReady = true;
         });
     }
