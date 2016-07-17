@@ -17,7 +17,7 @@ gulp.task('i18next', function () {
 			//      1) The gettext format like << 'Hello {{count}} world!' | translate:{count: 100} >>
 			//      2) The I18nModule format like << static YOUR_CONSTANT:string = "Your value..."; >>
 			//      3) The inner html format << <div [innerHTML]='"<span style=\"color:red;\">You have {count} apple</span>" | translate:{count: appleCount}'></div> >>
-			parser: '\'(.+)\'.+translate|static [A-Z_0-9]+\:string \= \"(.+)\"|\\[innerHTML\\]\=\'\"(.+)\" +\\|'
+			parser: '\'(.+)\'.+translate|static [A-Z_0-9 ]+\: {0,}string \= ["|\'](.+)["|\']|\\[innerHTML\\]\=\'\"(.+)\" +\\|'
 		}))
 		.pipe(gulp.dest('src/locales'));
 });
