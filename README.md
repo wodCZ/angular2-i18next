@@ -9,14 +9,6 @@ First you need to install the npm module:
 npm install angular2-i18next --save
 ```
 
-After that, you need to configure the typings.json:
-```json
-"dependencies": {
-   "bluebird": "registry:npm/bluebird#3.2.1+20160211005852",
-   ...
-}
-```
-
 ## Use
 
 **main.ts**
@@ -80,7 +72,7 @@ export class App {
 }
 ```
 
-**I18nModule.ts** (the localized constants at typescript files)
+**I18nModule.ts** (the localized constants at the typescript files)
 ```typescript
 class Products {
 
@@ -115,7 +107,7 @@ gulp.task('i18next', function () {
 			//      1) The gettext format like << 'Hello {{count}} world!' | translate:{count: 100} >>
 			//      2) The I18nModule format like << static YOUR_CONSTANT:string = "Your value..."; >>
 			//      3) The inner html format << <div [innerHTML]='"<span style=\"color:red;\">You have {count} apple</span>" | translate:{count: appleCount}'></div> >>
-			parser: '\'(.+)\'.+translate|static [A-Z_0-9]+\:string \= \"(.+)\"|\\[innerHTML\\]\=\'\"(.+)\" +\\|'
+			parser: '\'(.+)\'.+translate|static [A-Z_0-9 ]+\: {0,}string \= ["|\'](.+)["|\']|\\[innerHTML\\]\=\'\"(.+)\" +\\|'
 		}))
 		.pipe(gulp.dest('src/locales'));
 });

@@ -3,8 +3,6 @@ import {
     Inject
 } from '@angular/core'
 
-import * as Promise from 'bluebird';
-
 import {LanguageDetectorAdapter} from './browser/LanguageDetectorAdapter';
 import {ILanguageDetector} from './browser/ILanguageDetector';
 
@@ -18,14 +16,14 @@ const DEFAULT_FALLBACK_LNG:string = 'en';
 export class TranslateI18Next {
 
     private ready:boolean = false;
-    private i18nextPromise:Promise.Thenable<void>;
+    private i18nextPromise:Promise<void>;
 
     private fallbackLng:string = DEFAULT_FALLBACK_LNG;
     private debug:boolean = false;
 
     private mapping:Object = {};
 
-    public init(options?:any):Promise.Thenable<void> {
+    public init(options?:any):Promise<void> {
         options = options || {};
 
         this.fallbackLng = options.fallbackLng = options.fallbackLng || this.fallbackLng;
@@ -45,7 +43,7 @@ export class TranslateI18Next {
         this.mapping = options.mapping || this.mapping;
 
         return this.i18nextPromise =
-            new Promise<void>((resolve:(thenableOrResult?:void | Promise.Thenable<void>) => void, reject:(error:any) => void) => {
+            new Promise<void>((resolve:(thenableOrResult?:void | Promise<void>) => void, reject:(error:any) => void) => {
                 i18next
                     .use(i18nextXHRBackend)
                     .use(browserLanguageDetector)
