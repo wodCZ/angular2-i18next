@@ -36,7 +36,7 @@ export interface I18NextOptions {
     returnEmptyString?:boolean;
     returnObjects?:boolean;
     joinArrays?:boolean;
-    detection:IDetectionOptions;
+    detection?:IDetectionOptions;
     backend?:IBackendOptions;
 
     /**
