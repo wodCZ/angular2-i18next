@@ -7,7 +7,7 @@ export interface ITranslateI18NextOptions {
      */
     fallbackLng?:string;
     backend?:IBackendOptions;
-    browserLanguageDetector:ILanguageDetector;
+    browserLanguageDetector?:ILanguageDetector;
 
     /**
      * TranslateI18Next options
