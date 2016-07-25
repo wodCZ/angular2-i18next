@@ -20,6 +20,9 @@ export class TranslateI18Next {
         options = options || {};
 
         const fallbackLng:string = options.fallbackLng || DEFAULT_FALLBACK_LNG;
+        const detection:IDetectionOptions = options.detection || {
+                order: ['navigator']
+            };
 
         const browserLanguageDetector:ILanguageDetector = options.browserLanguageDetector
             ? LanguageDetectorAdapter.toBrowserLanguageDetector(options.browserLanguageDetector)
@@ -38,45 +41,16 @@ export class TranslateI18Next {
                     .use(i18nextXHRBackend)
                     .use(browserLanguageDetector)
                     .init(
-                        {
-                            debug: options.debug,
-                            initImmediate: options.initImmediate,
-                            lng: options.lng,
-
+                        Object.assign({}, options, {
                             fallbackLng: fallbackLng,
-
-                            ns: options.ns || [],
-                            defaultNS: options.defaultNS || 'translation',
-                            fallbackNS: options.fallbackNS,
-                            whitelist: options.whitelist,
-                            nonExplicitWhitelist: options.nonExplicitWhitelist,
-                            lowerCaseLng: options.lowerCaseLng,
-                            load: options.load,
-                            preload: options.preload,
-                            pluralSeparator: options.pluralSeparator,
-                            contextSeparator: options.contextSeparator,
-                            saveMissing: options.saveMissing,
-                            saveMissingTo: options.saveMissingTo,
-                            missingKeyHandler: options.missingKeyHandler,
-                            appendNamespaceToMissingKey: options.appendNamespaceToMissingKey,
-                            postProcess: options.postProcess,
-                            returnNull: options.returnNull,
-                            returnEmptyString: options.returnEmptyString,
-                            returnObjects: options.returnObjects,
-                            joinArrays: options.joinArrays,
-                            
-                            detection: options.detection || {
-                                order: ['navigator']
-                            },
-
-                            backend: options.backend,
+                            detection: detection,
 
                             /**
                              * The keys may contain normal human phrases, i.e. the "gettext format" therefore we should disable "i18next format"
                              */
                             nsSeparator: false,
                             keySeparator: false
-                        },
+                        }),
                         (err:any) => {
                             if (err) {
                                 console.error(err);
