@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core'
 
 import {LanguageDetectorAdapter} from './browser/LanguageDetectorAdapter';
 import {ILanguageDetector} from './browser/ILanguageDetector';
-import {I18NextOptions, IOptionsMapping, IDetectionOptions} from './I18NextOptions';
+import {I18NextOptions, ITranslationKeyMapping, IDetectionOptions} from './I18NextOptions';
 
 const i18next = require('i18next'),
     i18nextXHRBackend = require('i18next-xhr-backend'),
@@ -14,7 +14,7 @@ const DEFAULT_FALLBACK_LNG:string = 'en';
 export class TranslateI18Next {
 
     private i18nextPromise:Promise<void>;
-    private mapping:IOptionsMapping = {};
+    private mapping:ITranslationKeyMapping = {};
 
     public init(options?:I18NextOptions):Promise<void> {
         options = options || {};

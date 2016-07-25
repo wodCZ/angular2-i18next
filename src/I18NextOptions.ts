@@ -1,7 +1,7 @@
 import {ILanguageDetector} from './browser/ILanguageDetector';
 import {IBackendOptions} from './backend/IBackendOptions';
 
-export interface IOptionsMapping {
+export interface ITranslationKeyMapping {
     [index:string]:string;
 }
 
@@ -42,6 +42,6 @@ export interface I18NextOptions {
     /**
      * TranslateI18Next options
      */
-    mapping?:IOptionsMapping;
+    mapping?:ITranslationKeyMapping;
     browserLanguageDetector?:ILanguageDetector;
 }
