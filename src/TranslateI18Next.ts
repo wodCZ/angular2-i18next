@@ -86,7 +86,7 @@ export class TranslateI18Next {
                                 if (options.debug) {
                                     console.debug('[$TranslateI18Next] The translations has been loaded for the current language', i18next.language);
                                 }
-                                resolve(true);
+                                resolve(null);
                             }
                         });
             });
