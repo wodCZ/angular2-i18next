@@ -45,7 +45,7 @@ export class TranslateI18Next {
 
                             fallbackLng: fallbackLng,
 
-                            ns: options.ns,
+                            ns: options.ns || [],
                             defaultNS: options.defaultNS,
                             fallbackNS: options.fallbackNS,
                             whitelist: options.whitelist,
