@@ -5,6 +5,7 @@ import {
 
 import {LanguageDetectorAdapter} from './browser/LanguageDetectorAdapter';
 import {ILanguageDetector} from './browser/ILanguageDetector';
+import {ITranslateI18NextOptions} from './ITranslateI18NextOptions';
 
 const i18next = require('i18next'),
     i18nextXHRBackend = require('i18next-xhr-backend'),
@@ -23,7 +24,7 @@ export class TranslateI18Next {
 
     private mapping:Object = {};
 
-    public init(options?:any):Promise<void> {
+    public init(options?:ITranslateI18NextOptions):Promise<void> {
         options = options || {};
 
         this.fallbackLng = options.fallbackLng = options.fallbackLng || this.fallbackLng;
@@ -77,6 +78,10 @@ export class TranslateI18Next {
     }
 
     public translate(key:string, options?:any):string {
+        if (!key) {
+            return "";
+        }
+
         key = this.mapping[key] || key;
 
         options = options || {};
@@ -86,18 +91,7 @@ export class TranslateI18Next {
         options.interpolation.prefix = "{";
         options.interpolation.suffix = "}";
 
-        const translatedValue = i18next.t(key, options);
-
-        if (translatedValue) {
-            return translatedValue;
-        }
-
-        if (this.debug) {
-            console.warn('[$TranslateI18Next] The translation is not found for the key', key, 'and language', i18next.language);
-        }
-
-        return i18next.t(key, Object.assign(options, {lng: this.fallbackLng}))
-            || key;
+        return i18next.t(key, options) || key;
     }
 
     public changeLanguage(lng?:string, callback?:Function) {
