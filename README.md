@@ -113,6 +113,12 @@ gulp.task('i18next', function () {
 });
 ```
 
+## Publish
+
+```sh
+npm install & tsc & npm publish ./
+```
+
 ## License
 
 Licensed under MIT.
