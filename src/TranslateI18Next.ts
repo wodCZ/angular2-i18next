@@ -67,7 +67,9 @@ export class TranslateI18Next {
     }
 
     public translate(key:string, options?:any):string {
-        key = this.mapping[key] || key;
+        if (key) {
+            key = this.mapping[key] || key;
+        }
 
         options = options || {};
         options.interpolation = options.interpolation || {};
@@ -76,7 +78,7 @@ export class TranslateI18Next {
         options.interpolation.prefix = "{";
         options.interpolation.suffix = "}";
 
-        return i18next.t(key, options) || key;
+        return i18next.t(key, options);
     }
 
     public changeLanguage(lng?:string, callback?:Function) {
