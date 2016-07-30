@@ -67,10 +67,6 @@ export class TranslateI18Next {
     }
 
     public translate(key:string, options?:any):string {
-        if (!key) {
-            return "";
-        }
-
         key = this.mapping[key] || key;
 
         options = options || {};
