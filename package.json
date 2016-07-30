@@ -5,7 +5,8 @@
   "scripts": {
     "clean": "npm cache clean",
     "typings-install": "typings install",
-    "postinstall": "npm run typings-install"
+    "postinstall": "npm run typings-install",
+    "prepublish": "tsc"
   },
   "dependencies": {
     "i18next": "2.5.1",

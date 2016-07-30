@@ -116,7 +116,7 @@ gulp.task('i18next', function () {
 ## Publish
 
 ```sh
-npm install & tsc & npm publish ./
+npm install & npm publish ./
 ```
 
 ## License
