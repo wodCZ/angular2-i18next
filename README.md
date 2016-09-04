@@ -1,6 +1,6 @@
 # angular2-i18next
 
-An implementation of i18next wrapper for Angular 2.
+An implementation of i18next wrapper for Angular2 (RC6 compatible).  
 
 ## Installation
 
