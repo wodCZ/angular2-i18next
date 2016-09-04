@@ -9,6 +9,9 @@ import {TranslateI18Next} from "./TranslateI18Next";
 	],
 	declarations: [
 		TranslatePipe
+	],
+	exports: [
+		TranslatePipe
 	]
 })
 export class TranslateI18NextModule {
