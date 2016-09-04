@@ -13,21 +13,26 @@ npm install angular2-i18next --save
 
 **main.ts**
 ```typescript
-import {TranslateI18Next} from 'angular2-i18next';
+import {TranslateI18NextModule} from 'angular2-i18next';
 
-browser.bootstrap(App, [
-        TranslateI18Next,
+@NgModule({
+    bootstrap: [ApplicationComponent],
+    imports: [
+        TranslateI18NextModule,
         ...
-        ]);
+    ],
+    ...
+})
+export class ApplicationModule {
+}
 ```
 
 **app.ts**
 ```typescript
-import {TranslatePipe, TranslateI18Next} from 'angular2-i18next';
+import {TranslateI18Next} from 'angular2-i18next';
 
 @Component({
-  selector: 'app',
-  pipes: [TranslatePipe],
+  selector: 'app'
   ...
 });
 export class App {
