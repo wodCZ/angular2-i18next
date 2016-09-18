@@ -5,8 +5,9 @@ export interface ITranslationKeyMapping {
     [index:string]:string;
 }
 
-export interface IDetectionOptions {
-    order:Array<string>;
+export interface IInterpolation {
+    prefix?:string;
+    suffix?:string;
 }
 
 export interface I18NextOptions {
@@ -36,12 +37,13 @@ export interface I18NextOptions {
     returnEmptyString?:boolean;
     returnObjects?:boolean;
     joinArrays?:boolean;
-    detection?:IDetectionOptions;
     backend?:IBackendOptions;
+    interpolation?: IInterpolation;
 
     /**
      * TranslateI18Next options
      */
     mapping?:ITranslationKeyMapping;
     browserLanguageDetector?:ILanguageDetector;
+    supportedLanguages?: Array<string>;
 }

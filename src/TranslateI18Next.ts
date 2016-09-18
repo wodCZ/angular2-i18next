@@ -1,37 +1,41 @@
-import {Injectable} from '@angular/core'
+import {
+    Injectable,
+    Inject
+} from '@angular/core';
+
+import {LoggerFactory, ILogger} from 'ts-smart-logger';
 
 import {LanguageDetectorAdapter} from './browser/LanguageDetectorAdapter';
 import {ILanguageDetector} from './browser/ILanguageDetector';
-import {I18NextOptions, ITranslationKeyMapping, IDetectionOptions} from './I18NextOptions';
+import {I18NextOptions, ITranslationKeyMapping} from './I18NextOptions';
+import {TranslateI18NextLanguagesSupport} from "./TranslateI18NextLanguageDetector";
 
 const i18next = require('i18next'),
-    i18nextXHRBackend = require('i18next-xhr-backend'),
-    i18nextBrowserLanguageDetector = require('i18next-browser-languagedetector');
-
-const DEFAULT_FALLBACK_LNG:string = 'en';
+    i18nextXHRBackend = require('i18next-xhr-backend');
 
 @Injectable()
 export class TranslateI18Next {
 
+    private static logger: ILogger = LoggerFactory.makeLogger(TranslateI18NextLanguagesSupport);
+
     private i18nextPromise:Promise<void>;
     private mapping:ITranslationKeyMapping = {};
+
+    constructor(@Inject(TranslateI18NextLanguagesSupport) private translateI18NextLanguagesSupport:TranslateI18NextLanguagesSupport) {
+    }
 
     public init(options?:I18NextOptions):Promise<void> {
         options = options || {};
 
-        const fallbackLng:string = options.fallbackLng || DEFAULT_FALLBACK_LNG;
-        const detection:IDetectionOptions = options.detection || {
-                order: ['navigator']
-            };
+        const fallbackLng:string = options.fallbackLng || 'en';
 
-        const browserLanguageDetector:ILanguageDetector = options.browserLanguageDetector
+        const browserLanguageDetector: {new(): ILanguageDetector} = options.browserLanguageDetector
             ? LanguageDetectorAdapter.toBrowserLanguageDetector(options.browserLanguageDetector)
-            : i18nextBrowserLanguageDetector;
+            : LanguageDetectorAdapter.toBrowserLanguageDetector({
+            detect: (): string => this.translateI18NextLanguagesSupport.getSupportedLanguage(options.supportedLanguages)
+        });
 
-        if (options.debug) {
-            console.debug('[$TranslateI18Next] Fallback language is', fallbackLng);
-            console.debug('[$TranslateI18Next] The browser language detector is', browserLanguageDetector);
-        }
+        TranslateI18Next.logger.debug('[$TranslateI18Next] Fallback language is', fallbackLng, '. The browser language detector is', browserLanguageDetector);
 
         this.mapping = options.mapping || this.mapping;
 
@@ -43,7 +47,6 @@ export class TranslateI18Next {
                     .init(
                         Object.assign({}, options, {
                             fallbackLng: fallbackLng,
-                            detection: detection,
 
                             /**
                              * The keys may contain normal human phrases, i.e. the "gettext format" therefore we should disable "i18next format"
@@ -53,20 +56,17 @@ export class TranslateI18Next {
                         }),
                         (err:any) => {
                             if (err) {
-                                console.error(err);
-
+                                TranslateI18Next.logger.error(err);
                                 reject(err);
                             } else {
-                                if (options.debug) {
-                                    console.debug('[$TranslateI18Next] The translations has been loaded for the current language', i18next.language);
-                                }
+                                TranslateI18Next.logger.debug('[$TranslateI18Next] The translations has been loaded for the current language', i18next.language);
                                 resolve(null);
                             }
                         });
             });
     }
 
-    public translate(key:string, options?:any):string {
+    public translate(key:string, options?:I18NextOptions):string {
         if (key) {
             key = this.mapping[key] || key;
         }
