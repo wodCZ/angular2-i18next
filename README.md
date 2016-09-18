@@ -48,7 +48,7 @@ export class App {
             returnEmptyString: false,                                           // optional	- but.. it's important, please see http://i18next.com/docs/options/!
             mapping: {"specific_backend_message": "message_for_translate"},     // optional
             browserLanguageDetector: injectableCustomLanguageDetectorService,   // optional - the specific application language detector (allows you to return the language of the user.
-                                                                                //            If it absent, the service uses default "angular2 locale detector" behaviour using LOCALE_ID.  
+                                                                                //            If it is absent, the service uses default "angular2 locale detector" behaviour using LOCALE_ID.  
             // supportedLanguages: ['en', 'pt'],                                //            Therefore you can pass the optional supportedLanguages parameter which indicates your supported languages.    
                                                                                 //            For example, LOCALE_ID = 'en-AU' or 'en-US' or 'en', you can pass only ['en'] -> locales/en/translation.json
                                                                                 //                         LOCALE_ID = 'pt-BR' or 'pt', you can pass only ['pt'] -> locales/pt/translation.json
