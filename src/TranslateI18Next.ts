@@ -3,7 +3,7 @@ import {
     Inject
 } from '@angular/core';
 
-import {LoggerFactory, ILogger} from 'ts-smart-logger';
+import {LoggerFactory, ILogger, IEnvironmentLogger} from 'ts-smart-logger';
 
 import {LanguageDetectorAdapter} from './browser/LanguageDetectorAdapter';
 import {ILanguageDetector} from './browser/ILanguageDetector';
@@ -29,13 +29,19 @@ export class TranslateI18Next {
 
         const fallbackLng:string = options.fallbackLng || 'en';
 
-        const browserLanguageDetector: {new(): ILanguageDetector} = options.browserLanguageDetector
+        const browserLanguageDetectorCtor: {new(): ILanguageDetector} = options.browserLanguageDetector
             ? LanguageDetectorAdapter.toBrowserLanguageDetector(options.browserLanguageDetector)
             : LanguageDetectorAdapter.toBrowserLanguageDetector({
             detect: (): string => this.translateI18NextLanguagesSupport.getSupportedLanguage(options.supportedLanguages)
         });
 
-        TranslateI18Next.logger.debug('[$TranslateI18Next] Fallback language is', fallbackLng, '. The browser language detector is', browserLanguageDetector);
+        TranslateI18Next.logger.debug((logger: IEnvironmentLogger) => {
+	        logger.write('[$TranslateI18Next] The fallback language is', fallbackLng,
+		        '. The current language has been detected as', new browserLanguageDetectorCtor().detect(),
+		        '. The default language detector is looking at <@Inject(LOCALE_ID) locale: OpaqueToken> where <import {LOCALE_ID} from "@angular/core">',
+	            '. You should provide your current locale for all services using <@NgModule({providers: [{provide: LOCALE_ID, useValue: "en-AU"}]})>',
+	            '. See also "supportedLanguages" optional parameter when <TranslateI18Next.init(...)> is called');
+        });
 
         this.mapping = options.mapping || this.mapping;
 
@@ -43,7 +49,7 @@ export class TranslateI18Next {
             new Promise<void>((resolve:(thenableOrResult?:void | Promise<void>) => void, reject:(error:any) => void) => {
                 i18next
                     .use(i18nextXHRBackend)
-                    .use(browserLanguageDetector)
+                    .use(browserLanguageDetectorCtor)
                     .init(
                         Object.assign({}, options, {
                             fallbackLng: fallbackLng,
