@@ -13,7 +13,7 @@ npm install angular2-i18next --save
 
 **main.ts**
 ```typescript
-import {TranslateI18NextModule} from 'angular2-i18next';
+import {TranslateI18NextModule} from 'angular2-i18next/index';
 
 @NgModule({
     bootstrap: [ApplicationComponent],
@@ -29,7 +29,7 @@ export class ApplicationModule {
 
 **app.ts**
 ```typescript
-import {TranslateI18Next} from 'angular2-i18next';
+import {TranslateI18Next} from 'angular2-i18next/index';
 
 @Component({
   selector: 'app'
