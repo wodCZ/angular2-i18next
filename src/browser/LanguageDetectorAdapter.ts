@@ -1,4 +1,4 @@
-import {LoggerFactory, ILogger} from 'ts-smart-logger';
+import {LoggerFactory, ILogger} from 'ts-smart-logger/index';
 
 import {ILanguageDetector} from './ILanguageDetector';
 

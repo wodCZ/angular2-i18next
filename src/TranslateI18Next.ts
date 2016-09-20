@@ -3,7 +3,7 @@ import {
     Inject
 } from '@angular/core';
 
-import {LoggerFactory, ILogger, IEnvironmentLogger} from 'ts-smart-logger';
+import {LoggerFactory, ILogger, IEnvironmentLogger} from 'ts-smart-logger/index';
 
 import {LanguageDetectorAdapter} from './browser/LanguageDetectorAdapter';
 import {ILanguageDetector} from './browser/ILanguageDetector';

@@ -5,7 +5,7 @@ import {
 	LOCALE_ID
 } from "@angular/core";
 
-import {LoggerFactory, ILogger} from 'ts-smart-logger';
+import {LoggerFactory, ILogger} from 'ts-smart-logger/index';
 
 @Injectable()
 export class TranslateI18NextLanguagesSupport {
