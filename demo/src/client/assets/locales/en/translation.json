@@ -1,0 +1,4 @@
+{
+  "<span style=\"color:red;\">You have {count} apple</span>": "<span style=\"color:red;\">You have {count} apple</span>",
+  "<span style=\"color:red;\">You have {count} apple</span>_plural": "<span style=\"color:red;\">You have {count} apples</span>"
+}

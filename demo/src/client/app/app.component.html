@@ -1,3 +1,5 @@
 <sd-toolbar></sd-toolbar>
 <sd-navbar></sd-navbar>
 <router-outlet></router-outlet>
+
+<div *ngIf="viewReady" [innerHTML]='"<span style=\"color:red;\">You have {count} apple</span>" | translate:{count: appleCount}'></div>
