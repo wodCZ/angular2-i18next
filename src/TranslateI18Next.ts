@@ -10,8 +10,8 @@ import {ILanguageDetector} from './browser/ILanguageDetector';
 import {I18NextOptions, ITranslationKeyMapping} from './I18NextOptions';
 import {TranslateI18NextLanguagesSupport} from "./TranslateI18NextLanguageDetector";
 
-const i18next = require('i18next'),
-    i18nextXHRBackend = require('i18next-xhr-backend');
+const i18next = require('i18next/index'),
+    i18nextXHRBackend = require('i18next-xhr-backend/index');
 
 @Injectable()
 export class TranslateI18Next {
