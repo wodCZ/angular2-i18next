@@ -4,8 +4,10 @@ An implementation of i18next wrapper for Angular2 [2.2.2 & AoT compatible].
 
 ## Installation
 
-First you need to install the npm module:
+First you need to install the npm modules:
 ```sh
+npm install ts-smart-logger --save
+
 npm install angular2-i18next --save
 ```
 
