@@ -2,36 +2,46 @@
   "name": "angular2-i18next",
   "version": "0.0.59",
   "license": "MIT",
+  "keywords": [
+    "angular",
+    "angular2",
+    "i18next",
+    "angular2-i18next",
+    "ng2-i18next"
+  ],
+  "author": "Alex Poter",
   "scripts": {
     "clean": "npm cache clean",
-    "tsc-build": "node \"node_modules/typescript/bin/tsc\"",
-    "deploy": "npm install && npm run tsc-build && npm publish ./"
+    "ngc-build": "node_modules/.bin/ngc -p tsconfig.json",
+    "deploy": "npm install && npm run ngc-build && npm publish ./"
   },
   "dependencies": {
     "i18next": "2.5.1",
     "i18next-xhr-backend": "0.5.3"
   },
   "peerDependencies": {
-    "@angular/core": "~2.0.0",
+    "@angular/core": "~2.2.2",
 
-    "ts-smart-logger": "~0.0.3",
+    "ts-smart-logger": "~0.0.4",
 
-    "core-js": "^2.4.0",
-    "rxjs": "~5.0.0-beta.12",
-    "zone.js": "~0.6.13"
+    "core-js": "~2.4.1",
+    "rxjs": "~5.0.0-rc.4",
+    "zone.js": "~0.6.25"
   },
   "devDependencies": {
-    "@angular/core": "2.0.0",
+    "@angular/compiler-cli": "~2.2.2",
+    "@angular/compiler": "~2.2.2",
+    "@angular/core": "~2.2.2",
 
-    "ts-smart-logger": "~0.0.3",
+    "ts-smart-logger": "~0.0.4",
 
-    "typescript": "2.0.2",
-    "@types/core-js": "^0.9.28",
-    "@types/node": "^6.0.38",
+    "typescript": "~2.0.8",
+    "@types/core-js": "~0.9.34",
+    "@types/node": "~6.0.46",
 
-    "core-js": "^2.4.0",
-    "rxjs": "~5.0.0-beta.12",
-    "zone.js": "~0.6.13",
+    "core-js": "~2.4.1",
+    "rxjs": "~5.0.0-rc.4",
+    "zone.js": "~0.6.25",
 
     "gulp": "3.9.0",
     "i18next-parser": "0.7.0"
