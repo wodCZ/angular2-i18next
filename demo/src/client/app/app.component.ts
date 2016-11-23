@@ -13,6 +13,10 @@ import {TranslateI18Next} from 'angular2-i18next/index';
   templateUrl: 'app.component.html',
 })
 export class AppComponent {
+
+  private appleCount: number;
+  viewReady:boolean = false;
+
   constructor(private translateI18Next:TranslateI18Next) {
     console.log('Environment config', Config);
 
