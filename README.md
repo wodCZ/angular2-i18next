@@ -11,6 +11,13 @@ npm install ts-smart-logger --save
 npm install angular2-i18next --save
 ```
 
+## Demo
+
+**1** git clone --progress -v "git@github.com:apoterenko/angular2-i18next.git" "D:\sources"  
+**2** cd D:\sources\angular2-i18next\demo  
+**3** npm install  
+**4** npm start 
+
 ## Use
 
 **main.ts**
