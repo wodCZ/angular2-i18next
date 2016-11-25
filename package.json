@@ -25,7 +25,7 @@
     "ts-smart-logger": "~0.0.4",
 
     "core-js": "~2.4.1",
-    "rxjs": "~5.0.0-rc.4",
+    "rxjs": "~5.0.0-beta.12",
     "zone.js": "~0.6.25"
   },
   "devDependencies": {
@@ -40,7 +40,7 @@
     "@types/node": "~6.0.46",
 
     "core-js": "~2.4.1",
-    "rxjs": "~5.0.0-rc.4",
+    "rxjs": "~5.0.0-beta.12",
     "zone.js": "~0.6.25",
 
     "gulp": "3.9.0",
