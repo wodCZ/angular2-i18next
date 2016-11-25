@@ -57,7 +57,7 @@
   "typings": "index.d.ts",
   "main": "index.js",
   "engines": {
-    "node": ">= 4.2.1",
+    "node": ">= 6.5",
     "npm": ">= 3"
   }
 }
